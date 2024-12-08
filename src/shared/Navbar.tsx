@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const navItems = (
     <>
-      <Link to="/books">All Books</Link>
+      <NavLink to="/books">All Books</NavLink>
     </>
   );
   return (
@@ -33,7 +33,9 @@ export default function Navbar() {
             {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to="/" className="btn btn-ghost text-xl">
+          Book Nest
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
