@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  email: string;
+  password: string;
+};
 
 export default function Signin() {
+  const { register, handleSubmit } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -13,7 +21,7 @@ export default function Signin() {
           </p>
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form className="card-body">
+          <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -22,7 +30,7 @@ export default function Signin() {
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
-                required
+                {...register("email", { required: true })}
               />
             </div>
             <div className="form-control">
@@ -33,25 +41,18 @@ export default function Signin() {
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
-                required
+                {...register("password", { required: true })}
               />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>
-            <div>
-              <p>
-                New to BookNest? Go to{" "}
-                <Link to="/signup" className="text-purple-400">
-                  Signup
-                </Link>
-              </p>
-            </div>
+            <p>
+              New to BookNest? Go to{" "}
+              <Link to="/signup" className="text-purple-400">
+                Signup
+              </Link>
+            </p>
           </form>
         </div>
       </div>
